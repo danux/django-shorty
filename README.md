@@ -8,6 +8,7 @@ URL generation is based on a Bijective function i.e. it's based around base 62 e
 Credits
 =======
 Base 62 algorithm:  https://gist.github.com/778542
+
 URL Normalisation:  http://code.google.com/p/url-normalize/
 
 Installation
