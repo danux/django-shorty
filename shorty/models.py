@@ -9,7 +9,7 @@ from shorty.base_62 import dehydrate, saturate
 
 class ShortUrl(models.Model):
 
-    url = models.CharField(max_length=2048, unique=True, db_index=True)
+    url = models.CharField(max_length=255, unique=True, db_index=True)
     clicks = models.IntegerField(blank=True, null=True, default=0)
 
     @property
