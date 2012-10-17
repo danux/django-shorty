@@ -36,7 +36,6 @@ INSTALLED_APPS = (
 ```python
 url(r'^', include('shorty.urls', namespace='shorty')),
 ```
-
 or, place it anywhere and append something else to the request, i.e. domain.com/s/CodE
 ```python
 url(r'^s/', include('shorty.urls', namespace='shorty')),
