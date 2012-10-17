@@ -32,9 +32,19 @@ INSTALLED_APPS = (
 )
 ```
 
-4. Do a syncdb
+4. Add Urls. Either place this at the end of your urls for domain.com/CodE
+```python
+url(r'^', include('shorty.urls', namespace='shorty')),
+```
 
-5. Configure Django sites framework with correct FQDN
+or, place it anywhere and append something else to the request, i.e. domain.com/s/CodE
+```python
+url(r'^s/', include('shorty.urls', namespace='shorty')),
+```
+
+5. Do a syncdb
+
+6. Configure Django sites framework with correct FQDN
 
 Usage
 =====
