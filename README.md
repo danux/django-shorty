@@ -42,3 +42,13 @@ Usage
 1. Add {% load shorty_tags %} to your template
 
 2. Use {% short_url %} to display the short url on the page
+
+Extras
+======
+
+By default, only the normal path will be used. If you want to include the query string add this to your settings 
+```python
+settings.SHORT_URL_FULL_URL = True
+```
+
+Be warned, this means every request with a query string will be given a short URL and could be open to abuse. This is disabled by default.

@@ -1,4 +1,5 @@
 from django import template
+from django.conf import settings
 from django.contrib.sites.models import get_current_site
 from django.core.urlresolvers import reverse
 
@@ -12,7 +13,14 @@ def short_url(context):
         request = context['request']
     except IndexError:
         raise Exception('Request not available to URL shortener, ensure context processor: django.core.context_processors.request','django.core.context_processors.request is available.')
-    path = request.get_full_path()
+    
+    try:
+        if settings.SHORT_URL_FULL_URL:
+            path = request.get_full_path()
+        else:
+            path = request.path
+    except AttributeError:
+        path = request.path
     
     short_url, created = ShortUrl.objects.get_or_create(url=path)
     short_url_string = reverse('shorty:converter', args=(short_url.short_code,) )
