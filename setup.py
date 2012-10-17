@@ -8,5 +8,5 @@ setup(name='django-url-shortener',
       author='Daniel Davies',
       author_email='daniel@danux.co.uk',
       url='https://github.com/danux/standalone-url-shortener',
-      packages=['shorty',],
+      packages=['shorty','shorty.templatetags',],
      )
