@@ -22,7 +22,7 @@ class ShortUrl(models.Model):
 
     def url_normalize(self, charset='utf-8'):
         """
-        Normalises the URL, based on http://code.google.com/p/url-normalize/
+        Normalises the URL
         """
         def _clean(string):
             string = unicode(unquote(string), 'utf-8', 'replace')
