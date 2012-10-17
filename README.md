@@ -16,17 +16,20 @@ Installation
 1. pip install git+https://github.com/danux/standalone-url-shortener.git#egg=shorty
 
 2. Ensure the request is available to the context.
-
+```python
 TEMPLATE_CONTEXT_PROCESSORS = (
     ...
     "django.core.context_processors.request",
 )
+```
 
 3. Add shorty to available apps
+```python
 INSTALLED_APPS = (
     ...
     'shorty',
 )
+```
 
 4. Do a syncdb
 
