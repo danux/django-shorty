@@ -12,7 +12,7 @@ def short_url(context):
         request = context['request']
     except IndexError:
         raise Exception('Request not available to URL shortener, ensure context processor: django.core.context_processors.request','django.core.context_processors.request is available.')
-    path = request.path
+    path = request.get_full_path()
     
     short_url, created = ShortUrl.objects.get_or_create(url=path)
     short_url_string = reverse('shorty:converter', args=(short_url.short_code,) )
