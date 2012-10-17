@@ -1,14 +1,16 @@
 standalone-url-shortener
 ========================
 
-Importable app for Django projects to provide short URLs.
+Importable app for Django projects to provide short URLs. 
 
-CREDITS
+URL generation is based on a Bijective function i.e. it's based around base 62 encoding of the URL's PK
+
+Credits
 =======
 Base 62 algorithm:  https://gist.github.com/778542
 URL Normalisation:  http://code.google.com/p/url-normalize/
 
-INSTALLATION
+Installation
 ============
 
 1. pip install git+https://github.com/danux/standalone-url-shortener.git#egg=shorty
@@ -30,7 +32,7 @@ INSTALLED_APPS = (
 
 5. Configure Django sites framework with correct FQDN
 
-USAGE
+Usage
 =====
 
 1. Add {% load shorty_tags %} to your template
