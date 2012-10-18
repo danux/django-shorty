@@ -12,7 +12,7 @@ def short_url(context):
     try:
         request = context['request']
     except IndexError:
-        raise Exception('Request not available to URL shortener, ensure context processor: django.core.context_processors.request','django.core.context_processors.request is available.')
+        raise Exception('Request not available to URL shortener, ensure context processor: django.core.context_processors.request is available.')
     
     try:
         if settings.SHORT_URL_FULL_URL:
