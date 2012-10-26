@@ -14,7 +14,7 @@ URL Normalisation:  http://code.google.com/p/url-normalize/
 Installation
 ============
 
-1. pip install git+https://github.com/danux/standalone-url-shortener.git#egg=shorty
+1. pip install git+https://github.com/danux/django-shorty.git#egg=shorty
 
 2. Ensure the request is available to the context.
 ```python
