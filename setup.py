@@ -2,7 +2,7 @@
 
 from distutils.core import setup
 
-setup(name='django-url-shortener',
+setup(name='django-shorty',
       version='1.0',
       description='URL shortening app for Django projects',
       author='Daniel Davies',
