@@ -7,16 +7,23 @@ from django.db import models
 from shorty.base_62 import dehydrate, saturate
 
 
+class ShortUrlManager(models.Manager):
+
+    def get_by_code(self, code):
+        return self.get(pk=saturate(code))
+
 class ShortUrl(models.Model):
 
     url = models.CharField(max_length=255, unique=True, db_index=True)
     clicks = models.IntegerField(blank=True, null=True, default=0)
 
+    objects = ShortUrlManager()
+
     @property
     def short_code(self):
         return dehydrate(self.pk)
 
-    def save(self, *args, **kwargs): 
+    def save(self, *args, **kwargs):
         self.url_normalize()
         super(ShortUrl, self).save(*args, **kwargs)
 
