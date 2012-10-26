@@ -11,7 +11,7 @@ register = template.Library()
 def short_url(context):
     try:
         request = context['request']
-    except IndexError:
+    except KeyError:
         raise Exception('Request not available to URL shortener, ensure context processor: django.core.context_processors.request is available.')
     
     try:

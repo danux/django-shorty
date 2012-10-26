@@ -45,6 +45,7 @@ class ShortUrl(models.Model):
 
         if self.url[0] not in ['/', '-'] and ':' not in self.url[:7]:
             self.url = 'http://' + self.url
+            
 
         self.url = self.url.replace('#!', '?_escaped_fragment_=')
 
