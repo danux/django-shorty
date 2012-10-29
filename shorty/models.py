@@ -1,9 +1,14 @@
 import re
 import unicodedata
 import urlparse
+from datetime import datetime
+
 from urllib import quote, unquote
 
 from django.db import models
+
+from couchdbkit.ext.django.schema import *
+
 from shorty.base_62 import dehydrate, saturate
 
 
@@ -108,3 +113,15 @@ class ShortUrl(models.Model):
             path += "#"
 
         self.url = urlparse.urlunsplit((scheme, auth, path, query, fragment))
+
+
+class Click(Document):
+    date = DateTimeProperty(default=datetime.utcnow)
+
+    def register(self, request):
+        desired_keys = ('HTTP_HOST', 'HTTP_REFERER', 'HTTP_USER_AGENT', 'REMOTE_ADDR', )
+        for key, value in request.META.iteritems():
+            if key in desired_keys:
+                setattr(self, key.lower(), value)
+
+        self.session_key = request.session.session_key
