@@ -8,9 +8,9 @@ from shorty.models import ShortUrl, Click
 def convert(request, code):
     try:
         short_url = ShortUrl.objects.get_by_code(code)
-    except ShortUrl.:
+    except ShortUrl.DoesNotExist:
         Http404()
-        
+
     safe_mode = request.GET.get('safe_mode', False)
 
     short_url.clicks += 1
