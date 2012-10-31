@@ -19,7 +19,7 @@ class ShortUrl(models.Model):
 
     url = models.CharField(max_length=255, unique=True, db_index=True)
     clicks = models.IntegerField(blank=True, null=True, default=0)
-    unique_id = models.IntegerField(db_index=True, unique=True)
+    unique_id = models.IntegerField(db_index=True)
 
     objects = ShortUrlManager()
 
@@ -29,7 +29,7 @@ class ShortUrl(models.Model):
 
     def generate_unique_id(self):
         if not self.unique_id:
-            self.unique_id = self.pk + int(time.time())
+            self.unique_id = self.pk + (int(time.time()) - 100000000)
 
     def save(self, *args, **kwargs):
         self.url = url_normalize(self.url)
