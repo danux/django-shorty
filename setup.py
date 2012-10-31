@@ -9,6 +9,5 @@ setup(name='django-shorty',
       author_email='daniel@danux.co.uk',
       url='https://github.com/danux/standalone-url-shortener',
       packages=['shorty','shorty.templatetags',],
-      install_requires=['simplejson', 'couchdbkit',],
-      data_directories = ['_design/']
+      install_requires=['simplejson', 'couchdbkit',]
      )
