@@ -29,7 +29,7 @@ class ShortUrl(models.Model):
 
     def generate_unique_id(self):
         if not self.unique_id:
-            self.unique_id = self.pk + (int(time.time()) - 100000000)
+            self.unique_id = (self.pk + (int(time.time()) - settings.EPOCH_KEY)) * settings.PADDING_KEY
 
     def save(self, *args, **kwargs):
         self.url = url_normalize(self.url)
