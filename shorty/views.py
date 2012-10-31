@@ -29,6 +29,6 @@ def convert(request, code):
         click.save()
 
     if safe_mode:
-        return render_to_response("shorty/safe-mode.html", {'short_url': short_url}, RequestContext())
+        return render_to_response("shorty/safe-mode.html", {'short_url': short_url}, RequestContext(request))
     else:
         return HttpResponseRedirect(short_url.url)
