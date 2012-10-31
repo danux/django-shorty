@@ -9,7 +9,7 @@ def convert(request, code):
     try:
         short_url = ShortUrl.objects.get_by_code(code)
     except ShortUrl.DoesNotExist:
-        Http404()
+        raise Http404()
 
     safe_mode = request.GET.get('safe_mode', False)
 
