@@ -33,6 +33,7 @@ class ShortUrl(models.Model):
 
     def save(self, *args, **kwargs):
         self.url = url_normalize(self.url)
+        super(ShortUrl, self).save(*args, **kwargs)
         if not self.unique_id:
             self.generate_unique_id()
         super(ShortUrl, self).save(*args, **kwargs)
