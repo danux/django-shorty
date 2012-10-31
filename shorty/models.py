@@ -1,4 +1,4 @@
-import random
+import time
 import simplejson, urllib
 from datetime import datetime
 
@@ -28,14 +28,8 @@ class ShortUrl(models.Model):
         return dehydrate(self.unique_id)
 
     def generate_unique_id(self):
-        while not self.unique_id:
-            unique_id = random.getrandbits(30)
-            try:
-                ShortUrl.objects.get(unique_id=unique_id)
-            except ShortUrl.DoesNotExist:
-                self.unique_id = unique_id
-            else:
-                self.generate_unique_id()
+        if not self.unique_id:
+            self.unique_id = self.pk + int(time.time())
 
     def save(self, *args, **kwargs):
         self.url = url_normalize(self.url)
