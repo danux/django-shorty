@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render_to_response
+from django.template import RequestContext
 
 from shorty.models import ShortUrl, Click
 
@@ -28,6 +29,6 @@ def convert(request, code):
         click.save()
 
     if safe_mode:
-        return render_to_response("shorty/safe-mode.html", {'short_url': short_url})
+        return render_to_response("shorty/safe-mode.html", {'short_url': short_url}, RequestContext())
     else:
         return HttpResponseRedirect(short_url.url)
