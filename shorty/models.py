@@ -1,5 +1,6 @@
 import time
-import simplejson, urllib
+import simplejson
+import urllib
 from datetime import datetime
 
 from django.db import models
@@ -15,6 +16,7 @@ class ShortUrlManager(models.Manager):
     def get_by_code(self, code):
         return self.get(unique_id=saturate(code))
 
+
 class ShortUrl(models.Model):
 
     url = models.CharField(max_length=255, unique=True, db_index=True)
@@ -29,7 +31,8 @@ class ShortUrl(models.Model):
 
     def generate_unique_id(self):
         if not self.unique_id:
-            self.unique_id = (self.pk + (int(time.time()) - settings.EPOCH_KEY)) * settings.PADDING_KEY
+            self.unique_id = (self.pk + (
+                int(time.time()) - settings.EPOCH_KEY)) * settings.PADDING_KEY
 
     def save(self, *args, **kwargs):
         self.url = url_normalize(self.url)
@@ -38,11 +41,13 @@ class ShortUrl(models.Model):
             self.generate_unique_id()
         super(ShortUrl, self).save(*args, **kwargs)
 
+
 class Click(Document):
     date = DateTimeProperty(default=datetime.utcnow)
 
     def register(self, request):
-        desired_keys = ('HTTP_HOST', 'HTTP_REFERER', 'HTTP_USER_AGENT', 'REMOTE_ADDR', )
+        desired_keys = (
+            'HTTP_HOST', 'HTTP_REFERER', 'HTTP_USER_AGENT', 'REMOTE_ADDR', )
         for key, value in request.META.iteritems():
             if key in desired_keys:
                 setattr(self, key.lower(), value)
@@ -55,10 +60,9 @@ class Click(Document):
         try:
             params = {
                 'ip_address': self.remote_addr,
-                'api_key' : settings.GEO_IP_KEY
+                'api_key': settings.GEO_IP_KEY
             }
             url = settings.GEO_IP_URL + '?' + urllib.urlencode(params)
-            print url
             result = simplejson.load(urllib.urlopen(url))
             self.iso_country = result['country']['iso_country']
             self.iso_code_2 = result['country']['iso_code_2']
