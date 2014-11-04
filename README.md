@@ -1,18 +1,16 @@
-standalone-url-shortener
-========================
+# django-shorty
 
 Importable app for Django projects to provide short URLs. 
 
 URL generation is based on a Bijective function i.e. it's based around base 62 encoding of the URL's PK
 
-Credits
-=======
+## Credits
+
 Base 62 algorithm:  https://gist.github.com/778542
 
 URL Normalisation:  http://code.google.com/p/url-normalize/
 
-Installation
-============
+## Installation
 
 1. pip install git+https://github.com/danux/django-shorty.git#egg=shorty
 
@@ -45,15 +43,13 @@ url(r'^s/', include('shorty.urls', namespace='shorty')),
 
 6. Configure Django sites framework with correct FQDN
 
-Usage
-=====
+## Usage
 
 1. Add {% load shorty_tags %} to your template
 
 2. Use {% short_url %} to display the short url on the page
 
-Extras
-======
+## Extras
 
 By default, only the normal path will be used. If you want to include the query string add this to your settings 
 ```python

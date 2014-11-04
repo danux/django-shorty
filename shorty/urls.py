@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+"""
+The URLs file for shorty.
+"""
 from django.conf.urls import patterns, include, url
 
 urlpatterns = patterns('',

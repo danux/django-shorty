@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.conf import settings
 from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render_to_response
@@ -7,6 +8,14 @@ from shorty.models import ShortUrl, Click
 
 
 def convert(request, code):
+    """
+    View that converts codes in to URLs. If safemode is enable the user must confirm the redirect, otherwise
+    the redirect is automatic.
+
+    :type request: HttpRequest
+    :type code: unicode
+    :return: HttpResponse
+    """
     try:
         short_url = ShortUrl.objects.get_by_code(code)
     except ShortUrl.DoesNotExist:

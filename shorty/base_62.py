@@ -1,23 +1,18 @@
-#
-# Converts any integer into a base [BASE] number. I have chosen 62
-# as it is meant to represent the integers using all the alphanumeric
-# characters, [no special characters] = {0..9}, {A..Z}, {a..z}
-#
-# I plan on using this to shorten the representation of possibly long ids,
-# a la url shortenters
-#
-# saturate() takes the base 62 key, as a string, and turns it back into an integer
-# dehydrate() takes an integer and turns it into the base 62 string
-#
-# https://gist.github.com/778542
+# -*- coding: utf-8 -*-
+"""
+Converts any integer into a base [BASE] number. I have chosen 62
+as it is meant to represent the integers using all the alphanumeric
+characters, [no special characters] = {0..9}, {A..Z}, {a..z}
+
+I plan on using this to shorten the representation of possibly long ids,
+a la url shortenters
+
+saturate() takes the base 62 key, as a string, and turns it back into an integer
+dehydrate() takes an integer and turns it into the base 62 string
+
+https://gist.github.com/778542
+"""
 import math
-import sys
-import urlparse
-import re
-import unicodedata
-from datetime import datetime
-from urlnorm import norm
-from urllib import quote, unquote
 
 BASE = 62
 
@@ -30,8 +25,9 @@ def true_ord(char):
     """
     Turns a digit [char] in character representation
     from the number system with base [BASE] into an integer.
+    :type char: char
+    :rtype: ord
     """
-
     if char.isdigit():
         return ord(char) - DIGIT_OFFSET
     elif 'A' <= char <= 'Z':
@@ -46,6 +42,8 @@ def true_chr(integer):
     """
     Turns an integer [integer] into digit in base [BASE]
     as a character representation.
+
+    :type integer: int
     """
     if integer < 10:
         return chr(integer + DIGIT_OFFSET)
@@ -54,13 +52,14 @@ def true_chr(integer):
     elif 36 <= integer < 62:
         return chr(integer + LOWERCASE_OFFSET)
     else:
-        raise ValueError("%d is not a valid integer in the range of base %d" %
-                         (integer, BASE))
+        raise ValueError("{0} is not a valid integer in the range of base {1}".format(integer, BASE))
 
 
 def saturate(key):
     """
     Turn the base [BASE] number [key] into an integer
+
+    :type key: []
     """
     int_sum = 0
     reversed_key = key[::-1]
@@ -73,8 +72,8 @@ def dehydrate(integer):
     """
     Turn an integer [integer] into a base [BASE] number
     in string representation
+    :type integer: int
     """
-
     # we won't step into the while if integer is 0
     # so we just solve for that case here
     if integer == 0:
@@ -90,8 +89,9 @@ def dehydrate(integer):
 
 def url_normalize(url):
     """
-    Depricated: apps must normalize the URLs, if needed
+    Deprecated: apps must normalize the URLs, if needed
+
+    :type url: unicode
     """
-    raise DeprecationWarning(
-        "Apps must now handle URL normalisation themselves")
-    return norm(url)
+    del url
+    raise DeprecationWarning("Apps must now handle URL normalisation themselves")
