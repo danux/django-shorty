@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
-from django.conf import settings
 from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
-from shorty.models import ShortUrl, Click
+from shorty.models import ShortUrl
 
 
 def convert(request, code):
@@ -25,17 +24,6 @@ def convert(request, code):
 
     short_url.clicks += 1
     short_url.save()
-
-    if settings.ENABLE_CLICK_TRACKING:
-        click = Click()
-        click.register(request)
-        click.code = code
-        click.url = short_url.url
-        click.unique_id = short_url.unique_id
-        click.pk = short_url.pk
-        if safe_mode:
-            click.safe_mode = True
-        click.save()
 
     if safe_mode:
         return render_to_response("shorty/safe-mode.html", {'short_url': short_url}, RequestContext(request))

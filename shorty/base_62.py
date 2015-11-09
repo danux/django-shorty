@@ -16,9 +16,9 @@ import math
 
 BASE = 62
 
-UPPERCASE_OFFSET = 55
-LOWERCASE_OFFSET = 61
-DIGIT_OFFSET = 48
+UPPERCASE_OFFSET = int(55)
+LOWERCASE_OFFSET = int(61)
+DIGIT_OFFSET = int(48)
 
 
 def true_ord(char):
@@ -46,7 +46,10 @@ def true_chr(integer):
     :type integer: int
     """
     if integer < 10:
-        return chr(integer + DIGIT_OFFSET)
+        try:
+            return chr(integer + DIGIT_OFFSET)
+        except TypeError:
+            assert False, integer
     elif 10 <= integer <= 35:
         return chr(integer + UPPERCASE_OFFSET)
     elif 36 <= integer < 62:
@@ -78,12 +81,11 @@ def dehydrate(integer):
     # so we just solve for that case here
     if integer == 0:
         return '0'
-
     string = ""
     while integer > 0:
         remainder = integer % BASE
-        string = true_chr(remainder) + string
-        integer /= BASE
+        string = '{0}{1}'.format(true_chr(remainder), string)
+        integer = int(integer / BASE)
     return string
 
 

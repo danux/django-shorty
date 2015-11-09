@@ -1,14 +1,12 @@
 # django-shorty
 
-Importable app for Django projects to provide short URLs. 
+Importable app for Django projects to provide short URLs.
 
 URL generation is based on a Bijective function i.e. it's based around base 62 encoding of the URL's PK
 
 ## Credits
 
 Base 62 algorithm:  https://gist.github.com/778542
-
-URL Normalisation:  http://code.google.com/p/url-normalize/
 
 ## Installation
 
@@ -51,7 +49,7 @@ url(r'^s/', include('shorty.urls', namespace='shorty')),
 
 ## Extras
 
-By default, only the normal path will be used. If you want to include the query string add this to your settings 
+By default, only the normal path will be used. If you want to include the query string add this to your settings
 ```python
 settings.SHORT_URL_FULL_URL = True
 ```

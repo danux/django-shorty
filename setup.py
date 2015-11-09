@@ -10,8 +10,8 @@ setup(
     version='1.0',
     description='URL shortening app for Django projects',
     author='Daniel Davies',
-    author_email='daniel@danux.co.uk',
-    url='https://github.com/danux/standalone-url-shortener',
+    author_email='danieldavies127@gmail.com',
+    url='https://github.com/danux/django-shorty',
     packages=['shorty', 'shorty.templatetags', ],
-    install_requires=['simplejson', 'couchdbkit', 'urlnorm']
+    install_requires=['urltools==0.3.2'],
 )
