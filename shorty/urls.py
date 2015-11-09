@@ -2,9 +2,9 @@
 """
 The URLs file for shorty.
 """
-from django.conf.urls import patterns, include, url
+from django.conf.urls import patterns, url
 
-urlpatterns = patterns('',
-                       url(r'^(?P<code>[0-9A-Za-z]+)$',
-                           'shorty.views.convert', name='converter'),
-                       )
+urlpatterns = patterns(
+    '',
+    url(r'^(?P<code>[0-9A-Za-z]+)$', 'shorty.views.convert', name='converter'),
+)
