@@ -1,5 +1,8 @@
 # django-shorty
 
+[![Build Status](https://travis-ci.org/danux/django-shorty.svg)](https://travis-ci.org/danux/django-shorty)
+[![Coverage Status](https://coveralls.io/repos/danux/django-shorty/badge.svg?branch=master&service=github)](https://coveralls.io/github/danux/django-shorty?branch=master)
+
 Importable app for Django projects to provide short URLs.
 
 URL generation is based on a Bijective function i.e. it's based around base 62 encoding of the URL's PK
