@@ -2,7 +2,6 @@
 from django.test import TestCase, override_settings
 from django.template import Context, Template
 from freezegun import freeze_time
-import urltools
 
 from shorty.models import ShortUrl
 from shorty.base_62 import saturate, dehydrate

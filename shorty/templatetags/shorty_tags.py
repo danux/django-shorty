@@ -25,7 +25,7 @@ def short_url(context):
             'Request not available to URL shortener, ensure context processor: '
             'django.core.context_processors.request is available.'
         )
-    
+
     try:
         if settings.SHORT_URL_FULL_URL:
             path = request.get_full_path()

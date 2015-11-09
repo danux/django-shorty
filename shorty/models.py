@@ -2,11 +2,9 @@
 """
 Models to store shortened URLs.
 """
-import time
 from django.db import models
-from django.conf import settings
 import urltools
-from shorty.base_62 import dehydrate, saturate, url_normalize
+from shorty.base_62 import dehydrate, saturate
 
 
 class ShortUrlManager(models.Manager):
